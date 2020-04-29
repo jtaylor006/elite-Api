@@ -1,4 +1,8 @@
 const db = require('../db/index.js')
+const createUsers = (res, userInfo) => {
+
+
+}
 const getUsers = (res) => {
     const getUserQuery = 'SELECT * FROM users'
     return db.query(getUserQuery, [], (error, results) => {
@@ -8,4 +12,4 @@ const getUsers = (res) => {
         return res.status(200).send({ users: results.rows })
     })
 }
-module.exports = { getUsers }
+module.exports = { createUsers, getUsers }
