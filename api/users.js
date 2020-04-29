@@ -10,7 +10,7 @@ exports.getUsers = (req, res, next) => {
 
 exports.createUsers = (req, res, next) => {
     try {
-        console.log(req)
+        console.log(req.body)
         return res.status(200).send({message:'received users'})
  //       return userServices.createUsers(res)
     } catch (error) {
