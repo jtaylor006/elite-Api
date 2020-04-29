@@ -5,7 +5,7 @@ const createUserTable = () => {
     email VARCHAR(50),
     first_name VARCHAR(50),
     last_name VARCHAR(50),
-    password VARCHAR(50),
+    password VARCHAR(255),
     date_created TIMESTAMP)`;
 
     pool.query(userTableQuery, [], (error, response) => {

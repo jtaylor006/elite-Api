@@ -1,12 +1,16 @@
 const userQueries = require('../constants/userQueries')
 const db = require('../db/index.js')
-const getFormattedDate = require ('../helpers/getFormattedDate')
+const getFormattedDate = require('../helpers/getFormattedDate')
+const bcrypt = require('bcryptjs');
 const formattedDate = getFormattedDate(new Date())
 
 const createUsers = (res, userInfo) => {
     const { email, first_name, last_name, password } = userInfo
+    const salt = bcrypt.genSaltSync(10);
+    const encryptedPassword = bcrypt.hashSync(password, salt);
+    // Store hash in your password DB.    
 
-    return db.query(userQueries.createUserQuery, [email, first_name, last_name, password, formattedDate], (error, results) => {
+    return db.query(userQueries.createUserQuery, [email, first_name, last_name, encryptedPassword, formattedDate], (error, results) => {
         if (error) {
             throw new Error(error)
         }
