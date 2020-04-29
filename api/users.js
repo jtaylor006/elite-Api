@@ -10,9 +10,8 @@ exports.getUsers = (req, res, next) => {
 
 exports.createUsers = (req, res, next) => {
     try {
-        console.log(req.body)
-        return res.status(200).send({message:'received users'})
- //       return userServices.createUsers(res)
+        const userInfo = req.body
+        return userServices.createUsers(res, userInfo)
     } catch (error) {
         return next(error)
     } 
