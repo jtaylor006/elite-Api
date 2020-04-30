@@ -18,6 +18,23 @@ const createUsers = (res, userInfo) => {
     })
 }
 
+const editUser = (res, id, info) => {
+    console.log(info, id)
+    const columnKeys = Object.keys(info)
+    const values = Object.values(info)
+    let updateQuery = userQueries.editUserQuery
+    for (let i = 0; i < columnKeys.length; i += 1) {
+        updateQuery += ` ${columnKeys[i]}=($${i + 1})${i + 1 !== columnKeys.length ? "," : ""}`;
+    }
+    updateQuery = updateQuery += ` WHERE id = ${id}`
+    return db.query(updateQuery, values, (error, results) => {
+        if (error) {
+            throw new Error(error)
+        }
+        return res.status(200).send({ message: 'users successfully updated' })
+    })
+}
+
 const getUsers = (res) => {
     const getUserQuery = 'SELECT * FROM users'
     return db.query(getUserQuery, [], (error, results) => {
@@ -28,4 +45,5 @@ const getUsers = (res) => {
     })
 }
 
-module.exports = { createUsers, getUsers }
+
+module.exports = { createUsers, getUsers, editUser }

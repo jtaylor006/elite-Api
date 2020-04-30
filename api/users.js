@@ -1,4 +1,18 @@
-const userServices = require ('../services/usersServices.js')
+const userServices = require('../services/usersServices.js')
+
+exports.editUser = (req, res, next) => {
+    try {
+        console.log(req.params.userId)
+        const id = req.params.userId
+        const info = req.body
+        return userServices.editUser(res, id, info)
+    } catch (error) {
+        return next(error)
+    }
+}
+
+
+
 exports.getUsers = (req, res, next) => {
     try {
         console.log(req.body)
@@ -14,5 +28,5 @@ exports.createUsers = (req, res, next) => {
         return userServices.createUsers(res, userInfo)
     } catch (error) {
         return next(error)
-    } 
+    }
 }

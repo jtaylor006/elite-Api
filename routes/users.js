@@ -6,4 +6,6 @@ router.get('/', usersApi.getUsers)
 
 router.post('/', usersApi.createUsers)
 
+router.put('/:userId', usersApi.editUser)
+
 module.exports = router
