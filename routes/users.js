@@ -8,4 +8,6 @@ router.post('/', usersApi.createUsers)
 
 router.put('/:userId', usersApi.editUser)
 
+router.delete('/:id', usersApi.deleteUser)
+
 module.exports = router

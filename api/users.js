@@ -1,5 +1,15 @@
 const userServices = require('../services/usersServices.js')
 
+exports.deleteUser = (req, res, next) => {
+    try {
+        console.log(req.params.id)
+        const { id } = req.params
+        return userServices.deleteUser(res, id)
+    } catch (error) {
+            return next(error)
+    }
+}
+
 exports.editUser = (req, res, next) => {
     try {
         console.log(req.params.userId)
