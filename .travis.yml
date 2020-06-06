@@ -1,0 +1,23 @@
+# language: node_js
+# node_js:
+#   - stable
+# cache:
+#   directories:
+#     - "node_modules"
+# before_install:
+#   - npm install
+
+# # safelist
+# branches:
+#   only:
+#     - master
+# deploy:
+#   provider: elasticbeanstalk
+#   access_key_id:
+#     secure: "UxU17hX5m2YSl01arASr30u+NdbWroEDdA5Jgji6yUuGJuESsaQLMn0ikx4td6oIHVfEy5uUc0AA+lzKgDbunuDk3ESNeRsHXJBYLnMQUPEpzTaSmEpDrHaS8WCqd/3ZX4teMKvo+OX1bQkIbJX5ImTacR2YItKGyK4xwg0NDxLDJeE8xlYV8ZodeyTlN7jzlip+ZbP4d9cU+8V9ztuyrL/uzBDFksyFpcAco+EbekgflP8pB/x61yNAnnrZXsp1HqwpS+TWH24xvVvAX7C9bKQ5lYeWyH7tPnMDabvHBBoxJfdZUeSuUqs9g4/SjSjhdiGZPLaVibiGEnNdCmwq60KyZ8EdggC4E42fcGInnKT5wz5qOyHrBeZlYqtFd94FuXVOFBi04dr2nmYY8+wZJGldUMXBwj+a+zPZUPSOK2B2yTs3JT2Twk9jy2lPXj3Arv2Vd5abn6AM3N3V3l0lEOd66d+K1yk+/q1XLy9QwCFpeFAauHfzpzcqQXK9KDNFac9Fxah6DecOHFjnApzeq3qspghwHkL3fKCDT3pqXyuaWfyBwshFAnlFQruvlUQreWyhLCrVK9NRim4bd/vmewuwKy7blabwlCdbpL6zFZo9JiUynPJ4cYxyWkOqtrA4AHSG/b/9KslcDj9bIQMl4sMg76Ln/8xKvQOX0bMeqYk="
+#   secret_access_key:
+#     secure: "x+HMr3LANND+ibP3D6hFHFXevtkSf6oVEVEtXergj8Xqc4e5JTkY5RjGpbLy475n57wLM+rtn5nji+RshZxezSLz/TxSzU6YR2U+33/QhOW/ox1bIg6RfWoVDSqhPPi1M4bz0idU5UEjC8APXPpA3f7vzRh5eY/nboxGzlxdTltkSpzBtm7mPve+fQIiz03dSDBLUUiqyTn3elhHdG6wc4sVm3sB8H1EBMkDKHVn0MsqbP3JRr+1UEDZbceuwATLJX/+3TdvoPKOQr6/v0j8T3ShxLx50iM6m1oBNVdGgcegVtUsS6SmXPUNIs2B6jglexAumJLjrVMfX5dphAHaEPLkD89eLMgjgGnRkZesVlXpUUSy9FpkhbtcTZpOQBul9Ci93RmyadosQMZy2vIz2SsdjN4eLi1LIwQPrnCV6XROQdVXN3gb3SDVc0LiwdH/MayXayP6AzwudKfCw7WUxt1L7AOegMY6epuIWxHT9w8i5aj1gI4OY5lpP2NyeG11HSDrkvmZKTq1FJPWjNNSA24gNbMCkNmLWriZNx28klmmj4pTsw7V0Po5bT7HK4n+z+nDEDUSiuFsEOi43mV6okAnNmz//ROkg8T3ddXrU3GwxqZ7p1Ibz3W4V6Moro6ekk5297TsASg+5ktnATCtfpxBw/OBukSVzzVF8rAvHlg="
+#   region: "us-west-1"
+#   app: "elite-api"
+#   env: "elite-api-dev"
+#   bucket_name: "elite-api"% 
