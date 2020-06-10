@@ -11,7 +11,7 @@ describe("Server is working in a healthy manner!", () => {
       .request(app)
       .get("/")
       .end((err, res) => {
-        expect(res).to.have.status(20);
+        expect(res).to.have.status(200);
         expect(res.text).to.equal("Welcome Elite");
         done();
       });
