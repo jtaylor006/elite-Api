@@ -5,14 +5,14 @@ const chaiHttp = require("chai-http");
 const { expect } = chai;
 
 chai.use(chaiHttp);
-describe("User is able to interact with story API", () => {
-  it("Able to grab all of the stories from the database", (done) => {
+describe("Server is working in a healthy manner!", () => {
+  it("Server is up!", (done) => {
     chai
       .request(app)
-      .get("/api/stories")
+      .get("/")
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.haveOwnProperty('stories')
+        expect(res.text).to.equal("Welcome Elite");
         done();
       });
   });
