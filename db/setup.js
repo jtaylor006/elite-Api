@@ -24,6 +24,7 @@ const createStoryTable = () => {
     image VARCHAR(100),
     body TEXT,
     category VARCHAR(30),
+    created_by integer REFERENCES users (id),
     date_created TIMESTAMP)`;
   pool.query(storyTableQuery, [], (err, response) => {
       if (err) {

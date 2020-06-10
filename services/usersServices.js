@@ -29,7 +29,6 @@ const createUsers = (res, userInfo) => {
 }
 
 const editUser = (res, id, info) => {
-    console.log(info, id)
     const columnKeys = Object.keys(info)
     const values = Object.values(info)
     let updateQuery = userQueries.editUserQuery

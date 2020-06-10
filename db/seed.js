@@ -28,7 +28,8 @@ const seedStoryTable = () => {
     Some of us grew up in a world where we were told Michael Jordan was the greatest of all time before being able to make a backboard shot. Our parents put us in his shoes and we didn’t know what was on our feet. Dad didn’t have to tell us he was the greatest. Everything around us did it for them.
     The agenda for Michael Jordan wasn’t just pushed because it was well-deserved. We all know the basics. He won six championships, donned the most fashionable shoe ever, and is the most marketable athlete of all time. The game. The look. The allure. I understand.
     `,
-    "sports",
+    "Sports",
+    1,
     formattedDate
   ];
   pool.query(userQueries.createStoryQuery, storyValues, (error, response) => {
