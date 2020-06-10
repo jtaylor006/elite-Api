@@ -9,7 +9,9 @@ set -e
 cd "${0%/*}/.."
 
 # let's fake failing test for now 
-npm test
+echo "Running tests"
+echo "............................" 
+echo "Failed!" && exit 1
 
 # example of commands for different languages
 # eslint .         # JS code quality check
