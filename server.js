@@ -1,9 +1,9 @@
 const express = require ('express');
 require("dotenv").config();
-const app = express ();
+const app = express();
 const PORT = process.env.PORT;
 
-const logger = require ('morgan');
+const logger = require('morgan');
 
 const bodyParser = require('body-parser');
 
@@ -22,3 +22,4 @@ app.listen(PORT, () => {
     console.log(`listening to PORT ${PORT}`)
 });
 
+module.exports = app;
