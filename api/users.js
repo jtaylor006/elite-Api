@@ -11,7 +11,6 @@ exports.deleteUser = (req, res, next) => {
 
 exports.editUser = (req, res, next) => {
     try {
-        console.log(req.params.userId)
         const id = req.params.userId
         const info = req.body
         return userServices.editUser(res, id, info)
@@ -36,5 +35,14 @@ exports.createUsers = (req, res, next) => {
         return userServices.createUsers(res, userInfo)
     } catch (error) {
         return next(error)
+    }
+}
+
+exports.getUsersByStories = (req, res, next) => {
+    try {
+        const ids = req.body
+        return userServices.getUsersByStories(res, ids)
+    } catch (err) {
+        return next(err)
     }
 }
