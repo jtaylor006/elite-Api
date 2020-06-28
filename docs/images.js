@@ -3,7 +3,14 @@
  * /api/images:
  *   post:
  *     summary: Upload images to elite s3 bucket
- *     description: Able to retrieve all of the stories
+ *     description: Upload image to s3 bucket
+ *     requestBody:
+ *       required: true
+ *       content:
+ *          image/png:
+ *              schema:
+ *                  type: string
+ *                  format: binary
  *     tags:
  *       - Images
  *     responses:
