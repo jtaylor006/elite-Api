@@ -100,8 +100,7 @@
  *        parameters:
  *          - in: path
  *            name: userId
- *            schema:
- *              type: integer
+ *            type: integer
  *            required: true
  *            description: The User Id
  *        requestBody:
@@ -147,8 +146,7 @@
  *        parameters:
  *          - in: path
  *            name: userId
- *            schema:
- *              type: integer
+ *            type: integer
  *            required: true
  *            description: The user Id
  *        tags:

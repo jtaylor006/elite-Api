@@ -101,10 +101,9 @@
  *        parameters:
  *          - in: path
  *            name: storyId
- *            schema:
- *              type: integer
  *            required: true
  *            description: The Story Id
+ *            type: integer
  *        requestBody:
  *           description: Request object for creating a story
  *           required: true
@@ -154,10 +153,9 @@
  *        parameters:
  *          - in: path
  *            name: storyId
- *            schema:
- *              type: integer
  *            required: true
  *            description: The Story Id
+ *            type: integer
  *        tags:
  *          - Stories
  *        responses:
