@@ -1,4 +1,5 @@
 #!/bin/sh
+killall node -9
 git add .
 git add -u
 read -r -p 'Commit message: ' desc  # prompt user for commit message

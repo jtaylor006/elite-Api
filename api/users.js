@@ -1,5 +1,13 @@
 const userServices = require('../services/usersServices.js')
 
+exports.login = (req, res, next) => {
+
+}
+
+exports.logout = (req, res, next) => {
+    
+}
+
 exports.deleteUser = (req, res, next) => {
     try {
         const { id } = req.params
