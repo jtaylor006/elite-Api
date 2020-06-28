@@ -5,15 +5,13 @@ const getFormattedDate = require("../helpers/getFormattedDate");
 const bcrypt = require("bcryptjs");
 const formattedDate = getFormattedDate(new Date());
 
-const deleteUser = (res, id) => {
-  const deleteUserQuery = `DELETE FROM users WHERE id=($1)`;
-  return db.query(deleteUserQuery, [id], (error, results) => {
+const deleteUser = (res, id) =>
+  db.query(userQueries.deleteUserQuery, [id], (error, results) => {
     if (error) {
       throw new Error(error);
     }
     return res.status(200).send({ message: "user successfully deleted" });
   });
-};
 
 const createUsers = (res, userInfo) => {
   const { email, first_name, last_name, password } = userInfo;
@@ -51,16 +49,6 @@ const editUser = (res, id, info) => {
   });
 };
 
-const getUsers = (res) => {
-  const getUserQuery = "SELECT * FROM users";
-  return db.query(getUserQuery, [], (error, results) => {
-    if (error) {
-      throw new Error(error);
-    }
-    return res.status(200).send({ users: results.rows });
-  });
-};
-
 const getUsersByStories = (res) => {
   return db.query(
     storyQueries.getAllStories,
@@ -86,9 +74,22 @@ const getUsersByStories = (res) => {
   );
 };
 
+const getUserById = (res, id) =>
+  db.query(userQueries.getUserByIdQuery, [id], (error, results) => {
+    if (error) {
+      throw new Error(error);
+    }
+    // if user id is invalid
+    if (results.rows.length < 1) {
+      return res.status(400).send({ message: "User id is incorrect" });
+    }
+
+    return res.status(200).send({ user: results.rows[0] });
+  });
+
 module.exports = {
   createUsers,
-  getUsers,
+  getUserById,
   getUsersByStories,
   editUser,
   deleteUser,

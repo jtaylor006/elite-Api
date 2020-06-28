@@ -4,6 +4,8 @@ const usersApi = require("../api/users");
 
 router.get("/", usersApi.getUsersByStories);
 
+router.get("/id/:id", usersApi.getUserById)
+
 router.post("/", usersApi.createUsers);
 
 router.put("/:userId", usersApi.editUser);

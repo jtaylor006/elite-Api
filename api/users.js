@@ -27,16 +27,6 @@ exports.editUser = (req, res, next) => {
     }
 }
 
-
-
-exports.getUsers = (req, res, next) => {
-    try {
-        return userServices.getUsers(res)
-    } catch (error) {
-        return next(error)
-    }
-}
-
 exports.createUsers = (req, res, next) => {
     try {
         const userInfo = req.body
@@ -50,6 +40,15 @@ exports.getUsersByStories = (req, res, next) => {
     try {
         const ids = req.body
         return userServices.getUsersByStories(res, ids)
+    } catch (err) {
+        return next(err)
+    }
+}
+
+exports.getUserById = (req, res, next) => {
+    try {
+        const { id } = req.params
+        return userServices.getUserById(res, id)
     } catch (err) {
         return next(err)
     }

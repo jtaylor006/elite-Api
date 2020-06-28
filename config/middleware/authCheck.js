@@ -1,6 +1,6 @@
 const passport = require("passport");
 
-const User = require("../../models/User/User");
+// const User = require("../../models/User/User");
 
 // additionalPermissions is second layer of authCheck where we can add more requirements on top of the general role-based auth
 module.exports = (oneOfPermissions, additionalPermissions) =>
@@ -9,9 +9,9 @@ module.exports = (oneOfPermissions, additionalPermissions) =>
     passport.authenticate("jwt", { session: false }, (err, user) => {
       if (err) return res.status(401).send("Unauthorized!");
 
-      const userId = user._id;
+      const {id} = user;
 
-      return User.findById(userId, (err2, user2) => {
+      return User.findById(id, (err2, user2) => {
         if (err2 || !user2) return res.status(401).send("User not found!");
 
         // eslint-disable-next-line

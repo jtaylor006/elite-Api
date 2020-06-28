@@ -18,3 +18,17 @@ describe("able to get all users with stories", () => {
       });
   });
 });
+
+describe("able to get a specific user by id", () => {
+  it("Grabs a user", (done) => {
+    chai
+      .request(app)
+      .get("/api/users/id/3")
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.haveOwnProperty('user')
+        // expect statement for body to have an array
+        done();
+      });
+  });
+});
