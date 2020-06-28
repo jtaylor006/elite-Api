@@ -1,11 +1,12 @@
 const userServices = require('../services/usersServices.js')
 
-exports.login = (req, res, next) => {
-
-}
-
-exports.logout = (req, res, next) => {
-    
+exports.createUsers = (req, res, next) => {
+    try {
+        const userInfo = req.body
+        return userServices.createUsers(res, userInfo)
+    } catch (error) {
+        return next(error)
+    }
 }
 
 exports.deleteUser = (req, res, next) => {
@@ -27,15 +28,6 @@ exports.editUser = (req, res, next) => {
     }
 }
 
-exports.createUsers = (req, res, next) => {
-    try {
-        const userInfo = req.body
-        return userServices.createUsers(res, userInfo)
-    } catch (error) {
-        return next(error)
-    }
-}
-
 exports.getUsersByStories = (req, res, next) => {
     try {
         const ids = req.body
@@ -52,4 +44,22 @@ exports.getUserById = (req, res, next) => {
     } catch (err) {
         return next(err)
     }
+}
+
+exports.login = async (req, res, next) => {
+  try {
+    const reqUser = req.user;
+
+    const { token, user } = await userServices.signIn(reqUser);
+    return res.status(200).send({
+        token, 
+        user
+    });
+  } catch (err) {
+      return next(err)
+  }
+}
+
+exports.logout = (req, res, next) => {
+    
 }

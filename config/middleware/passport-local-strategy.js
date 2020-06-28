@@ -1,11 +1,17 @@
 const passport = require("passport");
 
 const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
+const bcrypt = require("bcryptjs");
 
 const LocalStrategy = require("passport-local");
 
-const User = require("../models/User/User");
 const config = require("./extra-config");
+
+const {
+  getUserByEmailQuery,
+  getUserByIdQuery,
+} = require("../../constants/userQueries");
+const db = require("../../db");
 
 // Create local strategy
 const localOptions = { usernameField: "email" };
@@ -14,22 +20,22 @@ const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
   // if it is the correct email and password
   // otherwise, call done with false
 
-  User.findOne({ email }, (err, user) => {
+  return db.query(getUserByEmailQuery, [email], (err, results) => {
     if (err) {
-      return done(err);
+      throw new Error(err);
     }
+    const user = results.rows[0];
     if (!user) {
       return done(null, { emailFound: false });
     }
-    // compare passwords - is `password` equal to user.password?
-    return user.comparePassword(password, (error, isMatch) => {
+
+    return bcrypt.compare(password, user.password, (error, res) => {
       if (error) {
-        return done(error);
+        done(error);
       }
-      if (!isMatch) {
+      if (!res) {
         return done(null, { password: false });
       }
-
       return done(null, user);
     });
   });
@@ -42,22 +48,25 @@ const jwtOptions = {
 };
 
 // Create JWT strategy
-const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) =>
-  // See if the user ID in the payload exists in our database
-  // If it does, call 'done' with that other
-  // otherwise, call done without a user object
+const jwtLogin = new JwtStrategy(
+  jwtOptions,
+  (payload, done) =>
+    // See if the user ID in the payload exists in our database
+    // If it does, call 'done' with that other
+    // otherwise, call done without a user object
 
-  User.findById(payload.sub, (err, user) => {
-    if (err) {
-      return done(err, false);
-    }
+    db.query(getUserByIdQuery, [payload.sub], (err, results) => {
 
-    if (user) {
+      if (err) {
+        throw new Error(err);
+      }
+      const user = results.rows[0];
+      if (!user) {
+        return done(null, false);
+      }
       return done(null, user);
-    }
+    })
 
-    return done(null, false);
-  })
 );
 
 // Tell passport to use this strategy

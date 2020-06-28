@@ -1,7 +1,7 @@
 const app = require("../server");
 const chai = require("chai");
 const chaiHttp = require("chai-http");
-
+const { authorizationHeader } = require('./constants')
 const { expect } = chai;
 
 chai.use(chaiHttp);
@@ -24,9 +24,10 @@ describe("able to get a specific user by id", () => {
     chai
       .request(app)
       .get("/api/users/id/3")
+      .set('Authorization', authorizationHeader)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.haveOwnProperty('user')
+        expect(res.body).to.haveOwnProperty("user");
         // expect statement for body to have an array
         done();
       });

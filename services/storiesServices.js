@@ -4,14 +4,13 @@ const formatUpdateQuery = require("../helpers/formatUpdateQuery");
 const queries = require("../constants/storyQueries");
 const formattedDate = getFormattedDate(new Date());
 
-const getStories = (res) => {
-  return db.query(queries.getAllStories, [], (err, results) => {
+const getStories = (res) =>
+  db.query(queries.getAllStories, [], (err, results) => {
     if (err) {
       throw new Error(err);
     }
     return res.status(200).send({ stories: results.rows });
   });
-};
 
 const createStory = (res, storyInfo) => {
   const { title, subtitle, image, body, category, created_by } = storyInfo;

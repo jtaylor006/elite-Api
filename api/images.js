@@ -19,7 +19,7 @@ exports.uploadImage = (req, res, next) => {
 
     s3.upload(params, (err, data) => {
       if (err) {
-        console.log("Error occured while trying to upload to S3 bucket", err);
+        throw new Error(err)
       }
 
       if (data) {

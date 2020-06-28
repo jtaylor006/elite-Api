@@ -8,6 +8,7 @@ require("dotenv").config();
 
 // const passport = require("./middleware/passport-facebook");
 const docs = require('./docs')
+const initPassport = require('./config/middleware/initPassport');
 
 const app = express();
 const PORT = process.env.PORT;
@@ -27,6 +28,8 @@ app.use(bodyParser.json());
 
 app.use(logger("dev"));
 app.use(cors());
+
+initPassport(app)
 
 
 require("./routes.js")(app);
