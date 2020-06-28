@@ -8,7 +8,7 @@ const swaggerDefinition = {
   info: {
     title: "Elite API",
     version: "1.0.0",
-    description: "Grolens METRC",
+    description: "Elite API",
   },
   host: process.env.DOC_HOST,
   basePath: "/",
