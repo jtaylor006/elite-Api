@@ -46,6 +46,48 @@
 
 /**
  * @swagger
+ * paths:
+ *   /api/users/id/${id}:
+ *      get:
+ *        summary: Get user by id
+ *        description: Able to get user by id
+ *        parameters:
+ *          - in: path
+ *            name: id
+ *            type: integer
+ *            required: true
+ *            description: The user Id
+ *        tags:
+ *          - Users
+ *        responses:
+ *          200:
+ *            description: Successfully retrieved the specified user
+ *            content:
+ *               application/json:
+ *                 schema:
+ *                     type: object
+ *                     properties:
+ *                         user:
+ *                             type: object
+ *                             description: User object
+ *                             properties:
+ *                                 first_name:
+ *                                      type: string
+ *                                      description: First name of user
+ *                                 last_name:
+ *                                      type: string
+ *                                      description: Last name of string
+ *                                 id:
+ *                                      type: integer
+ *                                      description: User Id
+ *                                  
+ *          401:
+ *            description: Incorrect Authorization
+ *
+ */
+
+/**
+ * @swagger
  * /api/users:
  *   post:
  *     summary: Create a user
