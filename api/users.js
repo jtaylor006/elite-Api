@@ -51,6 +51,7 @@ exports.login = async (req, res, next) => {
     const reqUser = req.user;
 
     const { token, user } = await userServices.signIn(reqUser);
+    user.password = undefined;
     return res.status(200).send({
         token, 
         user
