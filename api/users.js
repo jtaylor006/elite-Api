@@ -76,7 +76,7 @@ exports.check = async (req, res, next) => {
     const { user } = req;
 
     if (user) {
-      return res.status(200).send({ message: "found user" });
+      return res.status(200).send({ message: "found user", user });
     }
     return res.status(401).send({ message: "Unauthorized" });
   } catch (err) {
