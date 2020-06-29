@@ -2,6 +2,7 @@ const Router = require("express-promise-router");
 const router = new Router();
 const multer = require("multer");
 const images_api = require("../api/images");
+const authCheck = require("../config/middleware/authCheck");
 
 router.post(
   "/",
@@ -10,5 +11,7 @@ router.post(
   ),
   images_api.uploadImage
 );
+
+router.post("/sign", authCheck, images_api.sign_s3);
 
 module.exports = router;

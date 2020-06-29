@@ -19,13 +19,42 @@ exports.uploadImage = (req, res, next) => {
 
     s3.upload(params, (err, data) => {
       if (err) {
-        throw new Error(err)
+        throw new Error(err);
       }
 
       if (data) {
         fs.unlinkSync(req.file.path);
         return res.status(200).send({ data });
       }
+    });
+  } catch (err) {
+    return res.status(400).send(err);
+  }
+};
+
+exports.sign_s3 = (req, res, next) => {
+  try {
+    const s3 = new AWS.S3();
+    const { fileName, fileType } = req.body;
+
+    const s3Params = {
+      Bucket: process.env.S3_BUCKET,
+      Key: fileName,
+      Expires: 500,
+      ContentType: fileType,
+      ACL: "public-read",
+    };
+
+    s3.getSignedUrl("putObject", s3Params, (err, data) => {
+      if (err) {
+        throw new Error(err);
+      }
+
+      const response = {
+        signedRequest: data,
+        url: `https://${process.env.S3_BUCKET}.s3.amazonaws.com/${fileName}`,
+      };
+      return res.status(200).send(response);
     });
   } catch (err) {
     return res.status(400).send(err);
