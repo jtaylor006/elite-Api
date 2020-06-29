@@ -10,6 +10,8 @@ router.get("/", usersApi.getUsersByStories);
 
 router.get("/id/:id", authCheck, usersApi.getUserById);
 
+router.post('/check', authCheck, usersApi.check)
+
 router.post("/", usersApi.createUsers);
 
 router.post("/signin", requireSignIn, usersApi.login);

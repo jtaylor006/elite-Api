@@ -57,7 +57,7 @@ exports.login = async (req, res, next) => {
     }
 
     if (!reqUser.password) {
-        return res.status(400).send({ message: 'incorrect credentials'})
+      return res.status(400).send({ message: "incorrect credentials" });
     }
 
     const { token, user } = await userServices.signIn(reqUser);
@@ -66,6 +66,19 @@ exports.login = async (req, res, next) => {
       token,
       user,
     });
+  } catch (err) {
+    return next(err);
+  }
+};
+
+exports.check = async (req, res, next) => {
+  try {
+    const { user } = req;
+
+    if (user) {
+      return res.status(200).send({ message: "found user" });
+    }
+    return res.status(401).send({ message: "Unauthorized" });
   } catch (err) {
     return next(err);
   }

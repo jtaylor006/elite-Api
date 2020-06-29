@@ -11,6 +11,9 @@ module.exports = (app) => {
 
   // eslint-disable-next-line no-unused-vars
   app.use((err, req, res, next) => {
+    if (err.message === "Failed to serialize user into session") {
+      return res.status(401).send({ message: "Incorrect Auth" });
+    }
     if (!err.statusCode) {
       // eslint-disable-next-line no-param-reassign
       err.statusCode = 500;

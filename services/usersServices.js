@@ -99,7 +99,6 @@ const tokenForUser = user => {
 }
 
 const signIn = async user => {
-  console.log(user)
   const token = await tokenForUser(user);
   return { token, user }
 }

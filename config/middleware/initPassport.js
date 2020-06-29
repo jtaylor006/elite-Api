@@ -15,6 +15,7 @@ module.exports = (app) => {
 
   passport.deserializeUser((id, done) =>
     db.query(getUserByIdQuery, [id], (err, results) => {
+      console.log(err)
       const user = results.rows[0];
 
       return done(err, user);
