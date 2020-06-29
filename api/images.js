@@ -34,6 +34,11 @@ exports.uploadImage = (req, res, next) => {
 
 exports.sign_s3 = (req, res, next) => {
   try {
+    AWS.config.setPromisesDependency();
+    AWS.config.update({
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    });
     const s3 = new AWS.S3();
     const { fileName, fileType } = req.body;
 
