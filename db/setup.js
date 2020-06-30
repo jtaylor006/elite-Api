@@ -23,6 +23,7 @@ const createStoryTable = () => {
     subtitle VARCHAR(100),
     image VARCHAR(100),
     body TEXT,
+    is_featured BOOLEAN,
     category VARCHAR(30),
     created_by integer REFERENCES users (id),
     date_created TIMESTAMP)`;

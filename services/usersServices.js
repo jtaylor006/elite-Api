@@ -2,11 +2,10 @@ const userQueries = require("../constants/userQueries");
 const storyQueries = require("../constants/storyQueries");
 const db = require("../db/index.js");
 const getFormattedDate = require("../helpers/getFormattedDate");
-const jwt = require('jwt-simple');
+const jwt = require("jwt-simple");
 const bcrypt = require("bcryptjs");
 const formattedDate = getFormattedDate(new Date());
-const config = require('../config/middleware/extra-config')
-
+const config = require("../config/middleware/extra-config");
 
 const createUsers = (res, userInfo) => {
   const { email, first_name, last_name, password } = userInfo;
@@ -21,12 +20,12 @@ const createUsers = (res, userInfo) => {
       if (error) {
         throw new Error(error);
       }
-      return res.status(200).send({ message: "User Created", user: results.rows[0] });
+      return res
+        .status(200)
+        .send({ message: "User Created", user: results.rows[0] });
     }
   );
 };
-
-
 
 const editUser = (res, id, info) => {
   const columnKeys = Object.keys(info);
@@ -64,7 +63,9 @@ const getUsersByStories = (res) => {
       }
       if (queriedStories.rows.length > 0) {
         const stories = await queriedStories.rows;
-        const ids = await stories.map((story) => story.created_by);
+        const ids = await [
+          ...new Set(stories.map((story) => story.created_by)),
+        ];
         const last = await ids[ids.length - 1];
         let getUsersQuery = await `SELECT first_name, last_name, id FROM users WHERE `;
         await ids.forEach((id) => {
@@ -92,16 +93,15 @@ const getUserById = (res, id) =>
     return res.status(200).send({ user: results.rows[0] });
   });
 
-
-const tokenForUser = user => {
+const tokenForUser = (user) => {
   const timestamp = new Date().getTime();
-  return jwt.encode({ sub: user.id, iat: timestamp}, config.jwtSecret)
-}
+  return jwt.encode({ sub: user.id, iat: timestamp }, config.jwtSecret);
+};
 
-const signIn = async user => {
+const signIn = async (user) => {
   const token = await tokenForUser(user);
-  return { token, user }
-}
+  return { token, user };
+};
 
 module.exports = {
   createUsers,
@@ -109,5 +109,5 @@ module.exports = {
   deleteUser,
   getUserById,
   getUsersByStories,
-  signIn
+  signIn,
 };
