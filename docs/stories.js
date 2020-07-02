@@ -86,6 +86,9 @@
  *                      message:
  *                          type: string
  *                          default: Successfully created ${title}
+ *                      id:
+ *                          type: number
+ *                          default: 3
  *       401:
  *         description: Incorrect Authorization
  *
@@ -138,6 +141,9 @@
  *                         message:
  *                             type: string
  *                             default: Success!
+ *                         id:
+ *                             type: number
+ *                             default: 3
  *          401:
  *            description: Incorrect Authorization
  *
