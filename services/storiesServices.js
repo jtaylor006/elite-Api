@@ -39,7 +39,7 @@ const editStory = async (res, id, info) => {
     if (error) {
       throw new Error(error);
     }
-    return res.status(200).send({ message: "Success!" });
+    return res.status(200).send({ message: "Success!", id });
   });
 };
 
@@ -51,7 +51,7 @@ const deleteStory = async (res, id) => {
     }
     return res
       .status(200)
-      .send({ message: "Successfully deleted the story! " });
+      .send({ message: "Successfully deleted the story! ", id });
   });
 };
 
