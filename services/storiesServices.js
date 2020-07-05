@@ -44,8 +44,8 @@ const editStory = async (res, id, info) => {
 };
 
 const deleteStory = async (res, id) => {
-  const deleteQuery = (queries.deleteStoryQuery += ` id=($${id})`);
-  return db.query(deleteQuery, [id], (error, results) => {
+  const deleteQuery = (queries.deleteStoryQuery += ` id=(${id})`);
+  return db.query(deleteQuery, [], (error, results) => {
     if (error) {
       throw new Error(error);
     }
